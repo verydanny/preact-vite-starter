@@ -7,25 +7,31 @@ import { preactDevtoolsPlugin } from './config/devtools.js'
 
 const shouldTransform = createFilter([/\.[tj]sx?$/], [/node_modules/])
 const ISDEV = process.env.NODE_ENV === 'development'
+const ISSERVER = process.env.PLATFORM === 'server'
 
 export default defineConfig({
   plugins: [
-    million.vite({ mode: 'preact', auto: { threshold: 0.01 }, mute: true }),
+    million.vite({
+      mode: ISSERVER ? 'preact' : 'preact-server',
+      auto: { threshold: 0.01 },
+      mute: true,
+      server: ISSERVER,
+    }),
     ISDEV && prefresh(),
-    ISDEV && preactDevtoolsPlugin({ injectInProd: false, shouldTransform })
+    ISDEV && preactDevtoolsPlugin({ injectInProd: false, shouldTransform }),
   ],
   build: {
-    target: 'es2021',
-    minify: 'terser',
+    target: ISSERVER ? 'esnext' : 'es2021',
+    minify: ISSERVER ? false : 'terser',
     modulePreload: {
-      polyfill: false
-    }
+      polyfill: false,
+    },
   },
   esbuild: {
     target: 'esnext',
     jsxDev: true,
     jsxFactory: 'h',
     jsxFragment: 'h',
-    jsxImportSource: 'preact'
-  }
+    jsxImportSource: 'preact',
+  },
 })

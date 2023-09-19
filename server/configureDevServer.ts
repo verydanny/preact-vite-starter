@@ -2,15 +2,13 @@ import fs from 'node:fs/promises'
 import { createServer } from 'vite'
 import { resolve } from './server.js'
 
+import type { Context } from './server.js'
+
 const __isTest = process.env.VITEST
 
 interface ServerProps {
   root: string
   hmrPort?: number
-}
-
-interface Context {
-  url?: string
 }
 
 export async function configureDevServer(
