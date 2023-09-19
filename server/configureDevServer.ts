@@ -38,7 +38,7 @@ export async function configureDevServer(
 
       const template = await vite.transformIndexHtml(
         url,
-        await fs.readFile(resolve('index.html'), { encoding: 'utf-8' })
+        await fs.readFile(resolve('../index.html'), { encoding: 'utf-8' })
       )
 
       const render = (await vite.ssrLoadModule('/src/entryServer.tsx')).render
