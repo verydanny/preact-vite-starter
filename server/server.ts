@@ -44,7 +44,7 @@ export async function createServer(
       // @ts-expect-error
       const render = (await import('../dist/server/entryServer.js')).render
       const context: Context = {}
-      const appHtml = render(url, context)
+      const appHtml = await render(url, context)
 
       if (context.url) {
         return res.redirect(301, context.url)

@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "module": "ES2022",
+    "target": "ES2022",
     "moduleResolution": "Bundler",
     "jsx": "react-jsx",
     "jsxImportSource": "preact",
@@ -16,7 +17,10 @@
     "suppressExcessPropertyErrors": false,
     "suppressImplicitAnyIndexErrors": false,
     "noStrictGenericChecks": false,
-    "typeRoots": ["@types", "./node_modules/.pnpm/@types"]
+    "types": ["vite/client"],
+    "typeRoots": ["./node_modules", "@types", "./node_modules/.pnpm/@types"],
+    "incremental": true
   },
-  "include": ["server", "src"]
+  "include": ["server", "src"],
+  "exclude": ["node_modules"]
 }

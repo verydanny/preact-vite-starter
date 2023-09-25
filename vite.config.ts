@@ -11,27 +11,22 @@ const ISSERVER = process.env.PLATFORM === 'server'
 
 export default defineConfig({
   plugins: [
-    million.vite({
-      mode: ISSERVER ? 'preact' : 'preact-server',
-      auto: { threshold: 0.01 },
-      mute: true,
-      server: ISSERVER,
-    }),
+    million.vite({ mode: 'preact', server: ISSERVER, auto: true }),
     ISDEV && prefresh(),
     ISDEV && preactDevtoolsPlugin({ injectInProd: false, shouldTransform }),
   ],
   build: {
-    target: ISSERVER ? 'esnext' : 'es2021',
-    minify: ISSERVER ? false : 'terser',
+    target: 'esnext',
+    minify: true,
     modulePreload: {
-      polyfill: false,
+      polyfill: false
     },
+    manifest: true,
   },
   esbuild: {
-    target: 'esnext',
-    jsxDev: true,
+    jsx: 'automatic',
     jsxFactory: 'h',
-    jsxFragment: 'h',
-    jsxImportSource: 'preact',
+    jsxFragment: 'Fragment',
+    jsxImportSource: 'preact'
   },
 })

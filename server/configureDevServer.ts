@@ -42,7 +42,7 @@ export async function configureDevServer(
       const render = (await vite.ssrLoadModule('/src/entryServer.tsx')).render
 
       const context: Partial<Context> = {}
-      const appHtml = render(url, context)
+      const appHtml = await render(url, context)
       
       if (context.url) {
         return res.redirect(301, context.url)
