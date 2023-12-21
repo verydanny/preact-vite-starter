@@ -1,4 +1,3 @@
-import { useState } from 'preact/hooks'
 import { Link, Route } from 'wouter-preact'
 import { Suspense, lazy } from 'preact/compat'
 
@@ -22,9 +21,6 @@ const routes = Object.keys(pages).map((page) => {
 })
 
 export function App() {
-  const [count, setCount] = useState(0)
-  const increment = () => setCount(count + 1)
-
   return (
     <>
       <nav>
@@ -37,7 +33,7 @@ export function App() {
         </ul>
       </nav>
       {routes.map(({ path, component }) => (
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={() => null}>
           <Route key={path} path={path} component={component} />
         </Suspense>
       ))}

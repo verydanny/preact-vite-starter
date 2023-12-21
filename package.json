@@ -1,22 +1,23 @@
 {
   "name": "preact-vite-starter",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "type": "module",
   "scripts": {
-    "dev": "NODE_ENV=development ts-node-esm server/server.ts",
+    "dev": "NODE_ENV=development tsx server/server.ts",
     "build:client": "NODE_ENV=production PLATFORM=browser vite build --outDir dist/client",
     "build:server": "NODE_ENV=production PLATFORM=server vite build --ssr src/entryServer.tsx --outDir dist/server",
-    "serve": "NODE_ENV=production ts-node-esm server/server.ts",
+    "serve": "NODE_ENV=production tsx server/server.ts",
     "build:serve": "pnpm build:client && pnpm build:server && pnpm serve"
   },
   "dependencies": {
     "compression": "^1.7.4",
     "express": "^4.18.2",
     "million": "^2.6.4",
-    "preact": "^10.19.2",
+    "preact": "^10.19.3",
     "preact-render-to-string": "^6.3.1",
     "preact-ssr-prepass": "^1.2.1",
     "serve-static": "^1.15.0",
+    "tsx": "^4.7.0",
     "wouter-preact": "^2.12.2"
   },
   "devDependencies": {
@@ -28,10 +29,10 @@
     "@vitejs/plugin-react-swc": "^3.5.0",
     "debug": "^4.3.4",
     "kolorist": "^1.8.0",
-    "prettier": "^3.1.0",
-    "terser": "^5.24.0",
-    "ts-node": "^10.9.1",
-    "typescript": "^5.3.2",
-    "vite": "^5.0.4"
+    "prettier": "^3.1.1",
+    "terser": "^5.26.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.10"
   }
 }
